@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+    <title>Leo Animation 1</title> 
+</head>
+ <body>
+ 	<P align="center">
+ 	Animation #1 - the user has no control. The ball position varies according to a random function.
+ 	</P>
+    <p align="center"> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+       
+       
+var xPos = 400;
+var yPos = 400;
+var starWidth = 100;
+var starHeight = 100;
+var dx = 2;
+var dy = 2;
+var dw = 0.4;
+var dh = 0.4;
+noStroke();
+
+draw = function() {
+    
+    background(29, 40, 115);
+    
+fill(255, 200, 0);
+    ellipse(xPos, yPos, starWidth, starHeight);
+xPos-=dx;
+yPos-=dy;
+
+starWidth-=dw;
+starHeight-=dw;
+//makes the ball bounce of the walls and makes the ball look larger
+if(yPos < 2) {
+    dy = -dy;
+}
+if(xPos < 2) {
+    dx = -dx;
+    dh = -dh;
+    dw = -dw;
+}
+if(yPos > 398) {
+    dy = -dy;
+}
+if(xPos > 398) {
+    dx = -dx;
+    dh = -dh;
+    dw = -dw;
+}
+if(dw >5) {
+    dw = 5;
+}
+else if (dw <-5) {
+    dw = -5;
+}
+
+dx += random(-0.2, 0.2);
+dy += random(-0.2, 0.2);
+
+};
+
+
+       
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>

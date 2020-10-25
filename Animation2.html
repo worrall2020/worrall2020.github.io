@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+    <title>Leo Animation 2</title> 
+</head>
+ <body>
+ 	<P align="center">
+ 	Animation #2 - the user can control the colour.
+	</p>
+	<p align="center">
+	Click inside the square to start control <br>
+ 	Q - increase red <br>
+ 	A - decrease red <br>
+ 	W - increase green <br>
+ 	S - decrease green <br>
+ 	E - increase blue <br>
+ 	D - decrease blue 
+ 	</P>
+ 	
+    <p align="center"> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+// this program shows a ball bouncing across a screen
+// x coordinates of the ball
+var r = 100;
+var g = 100;
+var b = 100;
+var xPos = random(200, 400);
+// y coordinates of the ball
+var yPos = random( 200, 400);
+// width of the ball
+var starWidth = 100;
+// height of the ball
+var starHeight = 100;
+// x of the ball's diameter
+var dx = 2;
+// y of the ball's diameter
+var dy = 2;
+// width of the ball's diameter
+var dw = 0.4;
+// height of the ball's diameter
+var dh = 0.4;
+//removes all borders
+noStroke();
+//Checks if keys are pressed
+keyPressed = function() {
+ if (keyCode === 81){
+     r+=10;
+ }
+ else if (keyCode === 65)
+ {
+     r-=10;
+ }
+ else if (keyCode === 87){
+     g+=10;
+ }
+ else if (keyCode === 83){
+     g-=10;
+ }
+ else if(keyCode === 69){
+     b+=10;
+ }
+ else if (keyCode === 68){
+     b-=10;
+ }
+};
+
+//moves the ball
+draw = function() {
+    
+    background(29, 40, 115);
+    
+ 
+fill(r, g, b);
+    ellipse(xPos, yPos, starWidth, starHeight);
+xPos-=dx;
+yPos-=dy;
+
+starWidth-=dw;
+starHeight-=dw;
+//makes the ball bounce of the walls and makes the ball look larger
+if(yPos < 2) {
+    dy = -dy;
+}
+if(xPos < 2) {
+    dx = -dx;
+    dh = -dh;
+    dw = -dw;
+}
+if(yPos > 398) {
+    dy = -dy;
+}
+if(xPos > 398) {
+    dx = -dx;
+    dh = -dh;
+    dw = -dw;
+}
+
+
+};
+
+
+
+
+       
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
